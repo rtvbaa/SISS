@@ -3,7 +3,7 @@ package com.solidsystems.siss.dao.modelsDB;
 import javax.persistence.*;
 
 @Entity
-public class GoodsDB {
+public class ProductDB {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -20,4 +20,19 @@ public class GoodsDB {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
 }

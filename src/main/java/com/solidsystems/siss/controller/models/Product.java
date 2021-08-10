@@ -1,14 +1,19 @@
 package com.solidsystems.siss.controller.models;
 
-public class Goods {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class Product {
+    @JsonProperty("id")
     int id;
+    @JsonProperty("name")
     String name;
+    @JsonProperty("productDescription")
     String productDescription;
 
-    public Goods() {
+    public Product() {
     }
 
-    public Goods(int id, String name, String productDescription) {
+    public Product(int id, String name, String productDescription) {
         this.id = id;
         this.name = name;
         this.productDescription = productDescription;
