@@ -1,7 +1,9 @@
-package com.solidsystems.siss.controller.models;
+package com.solidsystems.siss.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Product {
     @JsonProperty("id")
     int id;

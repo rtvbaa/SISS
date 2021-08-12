@@ -1,8 +1,13 @@
-package com.solidsystems.siss.dao.modelsDB;
+package com.solidsystems.siss.dao.model;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
 
 @Entity
+@Repository
+@Service
 public class ProductDB {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,6 +16,7 @@ public class ProductDB {
 
     String name;
     String productDescription;
+
 
     public Long getId() {
         return id;
