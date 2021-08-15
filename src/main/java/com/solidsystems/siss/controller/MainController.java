@@ -16,7 +16,6 @@ public class MainController {
     AddProductDB addProductDB;
 
     @GetMapping("/get")
-    @ResponseBody
     public Product getProduct() {
         return product;
     }
@@ -24,8 +23,7 @@ public class MainController {
     @PostMapping(value = "/post",
             produces = { "application/json;charset=UTF-8" },
             consumes = { "application/json" })
-    @ResponseBody
-    public Product postProduct(@RequestBody Product product) {
+    public Product postProduct(Product product) {
         addProductDB.add(product);
         return product;
     }
