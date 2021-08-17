@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.*;
 
 @Entity
-@Repository
 @Service
 public class ProductDB {
     @Id
@@ -40,5 +39,14 @@ public class ProductDB {
 
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDB{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", productDescription='" + productDescription + '\'' +
+                '}';
     }
 }
