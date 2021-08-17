@@ -23,7 +23,7 @@ public class MainController {
     @PostMapping(value = "/post",
             produces = { "application/json;charset=UTF-8" },
             consumes = { "application/json" })
-    public Product postProduct(Product product) {
+    public Product postProduct(@RequestBody Product product) {
         addProductDB.add(product);
         return product;
     }
