@@ -1,11 +1,12 @@
 package com.solidsystems.siss.controller;
 
 import com.solidsystems.siss.controller.model.Product;
-import com.solidsystems.siss.dao.AddProductDB;
+import com.solidsystems.siss.service.AddProduct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
@@ -13,7 +14,7 @@ public class MainController {
     @Autowired
     Product product;
     @Autowired
-    AddProductDB addProductDB;
+    AddProduct addProduct;
 
     @GetMapping("/get")
     public Product getProduct() {
@@ -21,10 +22,10 @@ public class MainController {
     }
 
     @PostMapping(value = "/post",
-            produces = { "application/json;charset=UTF-8" },
-            consumes = { "application/json" })
+            produces = {"application/json;charset=UTF-8"},
+            consumes = {"application/json"})
     public Product postProduct(@RequestBody Product product) {
-        addProductDB.add(product);
+        addProduct.add(product);
         return product;
     }
 }
