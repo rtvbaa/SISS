@@ -1,6 +1,7 @@
 package com.solidsystems.siss.dao.model;
 
-import org.springframework.stereotype.Repository;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
@@ -8,45 +9,20 @@ import javax.persistence.*;
 @Entity
 @Service
 public class ProductDB {
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false)
     private Long id;
 
+    @Column(unique = true)
+    @Setter
+    @Getter
     String name;
+
+    @Basic(fetch = FetchType.LAZY)
+    @Setter
+    @Getter
     String productDescription;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
-    }
-
-    @Override
-    public String toString() {
-        return "ProductDB{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", productDescription='" + productDescription + '\'' +
-                '}';
-    }
 }
