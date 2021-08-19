@@ -4,6 +4,7 @@ services:
   pg_db:
     image: postgres
     restart: always
+    working_dir: "/home/app/"
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
@@ -13,3 +14,15 @@ services:
 
       #    volumes:
       #      - ./siss_db:/var/lib/postgresql/data
+
+  spring_tomcat:
+    image: maven:3.6.3-jdk-8-slim
+    working_dir: "/home/app/"
+    volumes:
+      - "./:/home/app/"
+      - "./.m2:/root/.m2"
+    command: bash -c "mvn clean spring-boot:run"
+    ports:
+      - "8080:8080"
+    links:
+      - pg_db

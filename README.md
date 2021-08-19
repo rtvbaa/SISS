@@ -1,6 +1,18 @@
 # SISS
 Sales information storage system
 
+###### Запуск
+
+Для запуска всего проекта в docker нужно:
+1. Установить Docker https://www.docker.com/get-started 
+2. В файле application.properties заменить spring.datasource.url на spring.datasource.url=jdbc:postgresql://pg_db:5432/siss_db
+3. В терминале выполнить команду "docker-compose up -d"
+
+Для запуска postgres в docker, а tomcat с веб-приложением в IDE нужно:
+1. Установить Docker https://www.docker.com/get-started
+2. В терминале выполнить команду "docker-compose up -d pg_db"
+3. Запустить SissApplication в IDE или выполнить команду в терминале "mvn clean spring-boot:run"
+
 ###### Тестовое задание
 
 Система хранения информации о продажах
