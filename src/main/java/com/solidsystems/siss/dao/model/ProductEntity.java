@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Service
-public class ProductDB {
+public class ProductEntity {
     @Setter
     @Getter
     @Id

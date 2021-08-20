@@ -1,12 +1,15 @@
 package com.solidsystems.siss.controller;
 
 import com.solidsystems.siss.controller.model.Product;
-import com.solidsystems.siss.service.AddProduct;
+import com.solidsystems.siss.dao.model.ProductEntity;
+import com.solidsystems.siss.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class MainController {
@@ -14,18 +17,18 @@ public class MainController {
     @Autowired
     Product product;
     @Autowired
-    AddProduct addProduct;
+    ProductService productService;
 
     @GetMapping("/get")
-    public Product getProduct() {
-        return product;
+    public List<ProductEntity> getProduct() {
+        return productService.get();
     }
 
     @PostMapping(value = "/post",
             produces = {"application/json;charset=UTF-8"},
             consumes = {"application/json"})
     public Product postProduct(@RequestBody Product product) {
-        addProduct.add(product);
+        productService.add(product);
         return product;
     }
 }

@@ -1,14 +1,25 @@
 package com.solidsystems.siss.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 @Service
 public class Product {
+
+    @Setter
+    @Getter
     @JsonProperty("id")
     int id;
+
+    @Setter
+    @Getter
     @JsonProperty("name")
     String name;
+
+    @Setter
+    @Getter
     @JsonProperty("productDescription")
     String productDescription;
 
@@ -18,30 +29,6 @@ public class Product {
     public Product(int id, String name, String productDescription) {
         this.id = id;
         this.name = name;
-        this.productDescription = productDescription;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
     }
 
