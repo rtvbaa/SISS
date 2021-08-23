@@ -12,15 +12,16 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    @Autowired
-    public ProductEntity productEntity;
+    private ProductEntity productEntity;
+
     @Autowired
     public ProductRepository productRepository;
 
-    public void add(Product product) {
+    public ProductEntity add(Product product) {
+        productEntity = new ProductEntity();
         productEntity.setName(product.getName());
         productEntity.setProductDescription(product.getProductDescription());
-        productRepository.saveAndFlush(productEntity);
+        return productRepository.saveAndFlush(productEntity);
     }
 
     public List<ProductEntity> get() {

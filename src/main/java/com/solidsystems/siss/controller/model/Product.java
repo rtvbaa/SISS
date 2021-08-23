@@ -11,7 +11,7 @@ public class Product {
     @Setter
     @Getter
     @JsonProperty("id")
-    int id;
+    private Long id;
 
     @Setter
     @Getter
@@ -26,7 +26,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, String name, String productDescription) {
+    public Product(Long id, String name, String productDescription) {
         this.id = id;
         this.name = name;
         this.productDescription = productDescription;
@@ -34,7 +34,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Goods{" +
+        return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", productDescription='" + productDescription + '\'' +

@@ -27,8 +27,7 @@ public class MainController {
     @PostMapping(value = "/post",
             produces = {"application/json;charset=UTF-8"},
             consumes = {"application/json"})
-    public Product postProduct(@RequestBody Product product) {
-        productService.add(product);
-        return product;
+    public ProductEntity postProduct(@RequestBody Product product) {
+        return productService.add(product);
     }
 }
