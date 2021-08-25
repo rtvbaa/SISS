@@ -19,8 +19,8 @@ public class ProductService {
 
     public ProductEntity add(Product product) {
         productEntity = new ProductEntity();
-        productEntity.setName(product.getName());
-        productEntity.setProductDescription(product.getProductDescription());
+        productEntity.setProductName(product.getProductName());
+        productEntity.setProductPrice(product.getProductPrice());
         return productRepository.saveAndFlush(productEntity);
     }
 

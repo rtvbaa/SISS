@@ -16,10 +16,10 @@ public class ProductEntity {
     @Column(unique = true)
     @Setter
     @Getter
-    String name;
+    String productName;
 
     @Basic(fetch = FetchType.LAZY)
     @Setter
     @Getter
-    String productDescription;
+    Integer productPrice;
 }

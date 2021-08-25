@@ -15,29 +15,20 @@ public class Product {
 
     @Setter
     @Getter
-    @JsonProperty("name")
-    String name;
+    @JsonProperty("productName")
+    String productName;
 
     @Setter
     @Getter
-    @JsonProperty("productDescription")
-    String productDescription;
-
-    public Product() {
-    }
-
-    public Product(Long id, String name, String productDescription) {
-        this.id = id;
-        this.name = name;
-        this.productDescription = productDescription;
-    }
+    @JsonProperty("productPrice")
+    Integer productPrice;
 
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", productDescription='" + productDescription + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
                 '}';
     }
 }
