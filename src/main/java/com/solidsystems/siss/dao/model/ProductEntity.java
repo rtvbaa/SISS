@@ -4,22 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
-public class ProductEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private Long id;
+public class ProductEntity extends BaseEntity {
 
     @Column(unique = true)
-    @Setter
     @Getter
+    @Setter
     String productName;
 
     @Basic(fetch = FetchType.LAZY)
-    @Setter
     @Getter
+    @Setter
     Integer productPrice;
+
+    @Getter
+    @Setter
+    @ManyToMany(mappedBy = "products")
+    private Collection<SaleEntity> sales;
+
 }
