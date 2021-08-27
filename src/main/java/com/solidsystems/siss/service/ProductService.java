@@ -12,13 +12,11 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    private ProductEntity productEntity;
-
     @Autowired
     public ProductRepository productRepository;
 
     public ProductEntity add(Product product) {
-        productEntity = new ProductEntity();
+        ProductEntity productEntity = new ProductEntity();
         productEntity.setProductName(product.getProductName());
         productEntity.setProductPrice(product.getProductPrice());
         return productRepository.saveAndFlush(productEntity);

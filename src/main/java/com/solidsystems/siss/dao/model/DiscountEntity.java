@@ -18,8 +18,17 @@ public class DiscountEntity extends BaseEntity {
     @Setter
     Date discountDate;
 
-    @Column(updatable = false)
     @Setter
+    @Column(updatable = false)
     @Getter
     Long productId;
+
+    public DiscountEntity() {
+    }
+
+    public DiscountEntity(Integer discountPercentage, Date discountDate, Long productId) {
+        this.discountPercentage = discountPercentage;
+        this.discountDate = discountDate;
+        this.productId = productId;
+    }
 }

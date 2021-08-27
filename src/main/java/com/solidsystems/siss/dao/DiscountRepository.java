@@ -1,7 +1,9 @@
 package com.solidsystems.siss.dao;
 
-import com.solidsystems.siss.dao.model.ProductEntity;
+import com.solidsystems.siss.dao.model.DiscountEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface DiscountRepository extends JpaRepository<ProductEntity, Long> {
+@Repository
+public interface DiscountRepository extends JpaRepository<DiscountEntity, Long> {
 }

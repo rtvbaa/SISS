@@ -24,4 +24,12 @@ public class ProductEntity extends BaseEntity {
     @ManyToMany(mappedBy = "products")
     private Collection<SaleEntity> sales;
 
+    public ProductEntity() {
+    }
+
+    public ProductEntity(String productName, Integer productPrice, Collection<SaleEntity> sales) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.sales = sales;
+    }
 }

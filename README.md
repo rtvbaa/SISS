@@ -11,7 +11,7 @@ Sales information storage system
 Для запуска postgres в docker, а tomcat с веб-приложением в IDE нужно:
 1. Установить Docker https://www.docker.com/get-started
 2. В терминале выполнить команду "docker-compose up -d pg_db"
-3. Запустить SissApplication в IDE или выполнить команду в терминале "mvn clean spring-boot:run"
+3. Запустить SissApplication в IDE или выполнить команду в терминале "./mvnw clean spring-boot:run"
 
 ###### Тестовое задание
 
