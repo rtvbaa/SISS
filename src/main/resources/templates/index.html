@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+
+<head>
+    <title>Список товаров</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+
+<body>
+<script>
+    fetch('/get')
+        .then(function(response) {
+            return response.text()
+        }).then(function(body) {
+        document.body.innerHTML = body
+    })
+</script>
+</body>
+</html>
