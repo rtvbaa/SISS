@@ -8,11 +8,12 @@
 <body>
 <script>
     fetch('/get')
-        .then(function(response) {
-            return response.text()
-        }).then(function(body) {
-        document.body.innerHTML = body
-    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            document.body.innerHTML = data;
+        });
 </script>
 </body>
 </html>
