@@ -35,6 +35,28 @@
             )
         }
     )
+
+    function sendPost() {
+        let payload = {
+            productName: "milk",
+            productPrice: 300
+        };
+
+        fetch("/post",
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(function (res) {
+                return res.json();
+            })
+            .then(function (data) {
+                alert(JSON.stringify(data))
+            })
+    }
 </script>
 
 <div class="container">
@@ -50,6 +72,9 @@
 
         </tbody>
     </table>
+</div>
+<div>
+<button id="the-button" onclick="sendPost()">sendPost</button>
 </div>
 </body>
 </html>
