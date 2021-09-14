@@ -1,5 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" lang="ru">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
 
 <head>
     <meta charset="UTF-8"/>
@@ -15,19 +14,42 @@
 </head>
 
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>N</th>
-        <th>Продукт</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="product, state : ${productService}">
-        <td th:utext="${state.count}">N</td>
-        <td th:utext="${product.getProductName()}">Продукт</td>
-    </tr>
-    </tbody>
-</table>
+<script>
+    fetch("/get").then(
+        res => {
+            res.json().then(
+                data => {
+                    console.log(data);
+                    if (data.length > 0) {
+
+                        var temp = "";
+                        data.forEach((itemData) => {
+                            temp += "<tr>";
+                            temp += "<td>" + itemData.id + "</td>";
+                            temp += "<td>" + itemData.productName + "</td>";
+                            temp += "<td>" + itemData.productPrice + "</td></tr>";
+                        });
+                        document.getElementById('data').innerHTML = temp;
+                    }
+                }
+            )
+        }
+    )
+</script>
+
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Product name</th>
+            <th>Product price</th>
+        </tr>
+        </thead>
+        <tbody id="data">
+
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
