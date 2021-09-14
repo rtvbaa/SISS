@@ -21,7 +21,7 @@ public class MainController {
 
     @GetMapping("/get")
     public List<ProductEntity> getProduct() {
-        return productService.get();
+        return productService.getAll();
     }
 
     @PostMapping(value = "/post",

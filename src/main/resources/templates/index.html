@@ -1,19 +1,33 @@
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="ru">
 
 <head>
+    <meta charset="UTF-8"/>
     <title>Список товаров</title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <style>
+        table, th, td {
+            padding: 10px;
+            font-style: italic;
+            font-size: 30px;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 
 <body>
-<script>
-    fetch('/get')
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            document.body.innerHTML = data;
-        });
-</script>
+<table>
+    <thead>
+    <tr>
+        <th>N</th>
+        <th>Продукт</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product, state : ${productService}">
+        <td th:utext="${state.count}">N</td>
+        <td th:utext="${product.getProductName()}">Продукт</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

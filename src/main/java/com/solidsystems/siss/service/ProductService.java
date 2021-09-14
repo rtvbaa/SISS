@@ -12,8 +12,11 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    @Autowired
-    public ProductRepository productRepository;
+    public final ProductRepository productRepository;
+
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public ProductEntity add(Product product) {
         ProductEntity productEntity = new ProductEntity();
@@ -22,7 +25,7 @@ public class ProductService {
         return productRepository.saveAndFlush(productEntity);
     }
 
-    public List<ProductEntity> get() {
+    public List<ProductEntity> getAll() {
         return productRepository.findAll();
     }
 }
