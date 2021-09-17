@@ -38,8 +38,8 @@
 
     function sendPost() {
         let payload = {
-            productName: "milk",
-            productPrice: 300
+            productName: document.getElementById('NewProductName').value,
+            productPrice: document.getElementById('NewProductPrice').value
         };
 
         fetch("/post",
@@ -53,8 +53,7 @@
             .then(function (res) {
                 return res.json();
             })
-            .then(function (data) {
-                alert(JSON.stringify(data))
+            .then(() => {
                 window.location.reload();
             })
     }
@@ -70,12 +69,20 @@
         </tr>
         </thead>
         <tbody id="data">
-
         </tbody>
+        <tr>
+            <td>id</td>
+            <td>
+                <label for="NewProductName"></label><input id="NewProductName" type="text" size="40">
+            </td>
+            <td>
+                <label for="NewProductPrice"></label><input id="NewProductPrice" type="number" size="40">
+            </td>
+        </tr>
     </table>
 </div>
 <div>
-<button id="the-button" onclick="sendPost()">sendPost</button>
+    <button id="the-button" onclick="sendPost()">Add a new product</button>
 </div>
 </body>
 </html>
