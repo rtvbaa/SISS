@@ -14,10 +14,12 @@ import java.util.List;
 @RestController
 public class MainController {
 
+    private final ProductService productService;
+
     @Autowired
-    Product product;
-    @Autowired
-    ProductService productService;
+    public MainController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/get")
     public List<ProductEntity> getProduct() {
