@@ -1,4 +1,8 @@
 import "./App.css";
+import {useEffect, useState} from 'react';
+import ProductTable from './ProductTable'
+
+const defaultItems = [{id: '1', productName: 'name', productPrice: 23}];
 
 function App() {
     const handleClick = () => {
@@ -6,31 +10,24 @@ function App() {
         sendPost();
     };
 
+
+    // const array = useState(defaultItems);
+    // const items = array[0];
+    // const setItems = array[1];
+    const [items, setItems] =  useState(defaultItems);
+
+            // hook
+    useEffect(()=>{
+        getData().then(data => {
+            setItems(data);
+        })
+    });
+
     return (
         <div className="App">
             <header className="App-header">
                 <div className="container">
-                    <table className="table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Product name</th>
-                            <th>Product price</th>
-                        </tr>
-                        </thead>
-                        <tbody id="data">{get()}</tbody>
-                        <tr>
-                            <td>id</td>
-                            <td>
-                                <label htmlFor="NewProductName"/>
-                                <input id="NewProductName" type="text" size="40"/>
-                            </td>
-                            <td>
-                                <label htmlFor="NewProductPrice"/>
-                                <input id="NewProductPrice" type="number" size="40"/>
-                            </td>
-                        </tr>
-                    </table>
+                    <ProductTable items={items}/>
                 </div>
                 <div>
                     <button id="the-button" onClick={handleClick}>
@@ -42,28 +39,10 @@ function App() {
     );
 }
 
-function get() {
-    fetch("/get").then(
-        res => {
-            res.json().then(
-                data => {
-                    console.log(data);
-                    if (data.length > 0) {
-                        let temp = "";
-                        data.forEach((itemData) => {
-                            temp += "<tr>";
-                            temp += "<td>" + itemData.id + "</td>";
-                            temp += "<td>" + itemData.productName + "</td>";
-                            temp += "<td>" + itemData.productPrice + "</td></tr>";
-                        });
-                        document.getElementById('data').innerHTML = temp;
-                    }
-                }
-            )
-        }
-    )
-
+function getData() {
+ return fetch("/get").then((res) => {return res.json();});
 }
+
 
 function sendPost() {
     let payload = {
@@ -85,6 +64,6 @@ function sendPost() {
         .then(() => {
             window.location.reload();
         })
-}
+}   
 
 export default App;
