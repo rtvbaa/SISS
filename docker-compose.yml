@@ -26,3 +26,13 @@ services:
       - "8080:8080"
     links:
       - pg_db
+
+  nginx:
+    image: nginx
+    working_dir: /usr/share/nginx/html
+    volumes:
+      - ./frontend/build/:/usr/share/nginx/html
+    ports:
+      - "3000:80"
+    links:
+      - spring_tomcat

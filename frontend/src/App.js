@@ -40,7 +40,7 @@ function App() {
 }
 
 function getData() {
- return fetch("/get").then((res) => {return res.json();});
+ return fetch("http://localhost:8080/get").then((res) => {return res.json();});
 }
 
 
@@ -50,7 +50,7 @@ function sendPost() {
         productPrice: document.getElementById('NewProductPrice').value
     };
 
-    fetch("/post",
+    fetch("http://localhost:8080/post",
         {
             method: "POST",
             headers: {
