@@ -21,7 +21,7 @@ function App() {
         getData().then(data => {
             setItems(data);
         })
-    });
+    }, [setItems]);
 
     return (
         <div className="App">
