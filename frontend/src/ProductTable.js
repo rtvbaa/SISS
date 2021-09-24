@@ -11,7 +11,10 @@ function ProductTable(props) {
                             {props.items.map(itemData => (<tr><td>{itemData.id}</td><td>{itemData.productName}</td><td>{itemData.productPrice}</td></tr>))} 
                         </tbody>
                         <tr>
-                            <td>id</td>
+                            <td>
+                                <label htmlFor="NewIDProduct"/>
+                                <input id="NewIDProduct" type="text" size="1" placeholder="id"/>
+                            </td>
                             <td>
                                 <label htmlFor="NewProductName"/>
                                 <input id="NewProductName" type="text" size="40"/>

@@ -20,10 +20,15 @@ public class ProductService {
     }
 
     public ProductEntity add(Product product) {
-        ProductEntity productEntity = new ProductEntity();
+        ProductEntity productEntity;
+        if (product.getId() == null || !productRepository.findById(product.getId()).isPresent()) {
+            productEntity = new ProductEntity();
+        } else {
+            productEntity = productRepository.findById(product.getId()).get();
+        }
         productEntity.setProductName(product.getProductName());
         productEntity.setProductPrice(product.getProductPrice());
-        return productRepository.saveAndFlush(productEntity);
+        return productRepository.save(productEntity);
     }
 
     public List<ProductEntity> getAll() {

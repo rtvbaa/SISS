@@ -46,6 +46,7 @@ function getData() {
 
 function sendPost() {
     let payload = {
+        id: document.getElementById('NewIDProduct').value,
         productName: document.getElementById('NewProductName').value,
         productPrice: document.getElementById('NewProductPrice').value
     };
