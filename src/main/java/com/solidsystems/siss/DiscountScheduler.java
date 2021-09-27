@@ -27,6 +27,7 @@ public class DiscountScheduler {
         Date date = new Date();
         DiscountEntity discountEntity = new DiscountEntity();
         discountEntity.setProductId(getRandomProduct());
+        discountEntity.setDiscountPercentage((int) (Math.random() * ((10 - 5) + 1)) + 5);
         discountEntity.setDiscountDate(date);
         discountRepository.saveAndFlush(discountEntity);
     }
