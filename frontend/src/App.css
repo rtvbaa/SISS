@@ -1,9 +1,16 @@
 .App {
   text-align: center;
+  background-color: #282c34;
 }
 
-.App-header {
-  background-color: #282c34;
+.App-header{
+  background-color: #10d797;
+  font-size: calc(10px + 2vmin);
+  display: flex;
+  flex-direction: column;
+}
+
+.App-body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
