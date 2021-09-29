@@ -43,7 +43,7 @@ function App() {
                     </Route>
                     <Route path="/Sale">
                         <body className="App-body">
-                            <p>Sale</p>
+                        <p>Sale</p>
                         </body>
                     </Route>
                     <Route path="/Discount">
@@ -52,13 +52,7 @@ function App() {
                         </body>
                     </Route>
                 </Switch>
-
             </Router>
-
-
-
-
-
         </div>
     );
 }

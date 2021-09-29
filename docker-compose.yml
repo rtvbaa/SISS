@@ -39,10 +39,10 @@ services:
       - spring_tomcat
 
   nginx:
-    image: nginx
-    working_dir: /usr/share/nginx/html
+    image: steebchen/nginx-spa
+    working_dir: /app
     volumes:
-      - ./frontend/build/:/usr/share/nginx/html
+      - ./frontend/build/:/app
     ports:
       - "3000:80"
     links:
