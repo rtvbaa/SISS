@@ -29,6 +29,15 @@ services:
     links:
       - pg_db
 
+  node_js:
+    image: node
+    working_dir: "/home/app/"
+    volumes:
+      - ./frontend:/home/app/
+    command: bash -c "npm run build"
+    links:
+      - spring_tomcat
+
   nginx:
     image: nginx
     working_dir: /usr/share/nginx/html
@@ -37,4 +46,4 @@ services:
     ports:
       - "3000:80"
     links:
-      - spring_tomcat
+      - node_js
