@@ -16,7 +16,7 @@ services:
       #      - ./siss_db:/var/lib/postgresql/data
 
   spring_tomcat:
-    image: maven:3.6.3-jdk-8-slim
+    image: maven:3.8-openjdk-11-slim
     working_dir: "/home/app/"
     volumes:
       - "./:/home/app/"
