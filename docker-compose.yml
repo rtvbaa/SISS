@@ -34,7 +34,7 @@ services:
     working_dir: "/home/app/"
     volumes:
       - ./frontend:/home/app/
-    command: bash -c "npm run build"
+    command: bash -c "npm install; npm run build;"
     links:
       - spring_tomcat
 
