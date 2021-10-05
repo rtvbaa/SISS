@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class ProductEntity extends BaseEntity {
@@ -22,7 +22,7 @@ public class ProductEntity extends BaseEntity {
     @Getter
     @Setter
     @ManyToMany(mappedBy = "products")
-    private Collection<SaleEntity> sales;
+    private List<SaleEntity> sales;
 
     public ProductEntity() {
     }
@@ -32,7 +32,7 @@ public class ProductEntity extends BaseEntity {
         this.productPrice = productPrice;
     }
 
-    public ProductEntity(String productName, Integer productPrice, Collection<SaleEntity> sales) {
+    public ProductEntity(String productName, Integer productPrice, List<SaleEntity> sales) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.sales = sales;

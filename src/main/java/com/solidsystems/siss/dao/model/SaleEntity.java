@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class SaleEntity extends BaseEntity {
@@ -23,7 +23,7 @@ public class SaleEntity extends BaseEntity {
             joinColumns = @JoinColumn(name = "SALE_ID"),
             inverseJoinColumns = @JoinColumn(name = "Product_ID")
     )
-    private Collection<ProductEntity> products;
+    private List<ProductEntity> products;
 
     @Getter
     @Setter
@@ -37,7 +37,7 @@ public class SaleEntity extends BaseEntity {
         this.discountId = discountId;
     }
 
-    public SaleEntity(Date saleDate, Collection<ProductEntity> products, long discountId) {
+    public SaleEntity(Date saleDate, List<ProductEntity> products, long discountId) {
         this.saleDate = saleDate;
         this.products = products;
         this.discountId = discountId;

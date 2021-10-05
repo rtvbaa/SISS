@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class Sale {
@@ -25,7 +25,7 @@ public class Sale {
 
     @Getter
     @Setter
-    private Collection<Product> products;
+    private List<Product> products;
 
     public Sale() {
     }
@@ -36,7 +36,7 @@ public class Sale {
         this.discountId = discountId;
     }
 
-    public Sale(Long id, Date saleDate, long discountId, Collection<Product> products) {
+    public Sale(Long id, Date saleDate, long discountId, List<Product> products) {
         this.id = id;
         this.saleDate = saleDate;
         this.discountId = discountId;

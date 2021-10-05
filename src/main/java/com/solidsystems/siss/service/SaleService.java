@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class SaleService {
@@ -22,11 +22,11 @@ public class SaleService {
         this.saleRepository = saleRepository;
     }
 
-    public Collection<Sale> getAll() {
-        Collection<Sale> saleList = new ArrayList<>();
+    public List<Sale> getAll() {
+        List<Sale> saleList = new ArrayList<>();
         for (SaleEntity saleEntity : saleRepository.findAll()) {
-            Collection<Product> products = new ArrayList<>();
-            for (ProductEntity productEntity: saleEntity.getProducts()) {
+            List<Product> products = new ArrayList<>();
+            for (ProductEntity productEntity : saleEntity.getProducts()) {
                 products.add(new Product(productEntity.getId(), productEntity.getProductName(), productEntity.getProductPrice()));
             }
             saleList.add(new Sale(saleEntity.getId(), saleEntity.getSaleDate(), saleEntity.getDiscountId(), products));
