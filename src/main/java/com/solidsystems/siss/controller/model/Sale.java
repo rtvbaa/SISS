@@ -5,9 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Service
 public class Sale {
@@ -26,5 +25,21 @@ public class Sale {
 
     @Getter
     @Setter
-    private Set<Product> products = new HashSet<>();
+    private Collection<Product> products;
+
+    public Sale() {
+    }
+
+    public Sale(Long id, Date saleDate, long discountId) {
+        this.id = id;
+        this.saleDate = saleDate;
+        this.discountId = discountId;
+    }
+
+    public Sale(Long id, Date saleDate, long discountId, Collection<Product> products) {
+        this.id = id;
+        this.saleDate = saleDate;
+        this.discountId = discountId;
+        this.products = products;
+    }
 }

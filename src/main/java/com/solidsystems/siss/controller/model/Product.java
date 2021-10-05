@@ -23,6 +23,15 @@ public class Product {
     @JsonProperty("productPrice")
     Integer productPrice;
 
+    public Product() {
+    }
+
+    public Product(Long id, String productName, Integer productPrice) {
+        this.id = id;
+        this.productName = productName;
+        this.productPrice = productPrice;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
