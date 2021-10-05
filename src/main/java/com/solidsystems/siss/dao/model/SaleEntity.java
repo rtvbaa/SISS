@@ -32,6 +32,11 @@ public class SaleEntity extends BaseEntity {
     public SaleEntity() {
     }
 
+    public SaleEntity(Date saleDate, long discountId) {
+        this.saleDate = saleDate;
+        this.discountId = discountId;
+    }
+
     public SaleEntity(Date saleDate, Collection<ProductEntity> products, long discountId) {
         this.saleDate = saleDate;
         this.products = products;
