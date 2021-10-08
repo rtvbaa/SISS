@@ -36,7 +36,7 @@ function ProductPage() {
     )
 
     function getData() {
-        return fetch("http://localhost:8080//getProduct").then((res) => {
+        return fetch("http://localhost:8080/getProducts").then((res) => {
             return res.json();
         });
     }

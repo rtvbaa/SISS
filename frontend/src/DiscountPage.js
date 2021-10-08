@@ -10,7 +10,14 @@ function DiscountPage() {
         })
     }, [setItems]);
 
-    return(
+    let map = items.map(itemData => (<tr>
+        <td>{itemData.id}</td>
+        <td>{itemData.discountPercentage}</td>
+        <td>{new Date(itemData.discountDate).getHours()}</td>
+        <td>{itemData.productId}</td>
+    </tr>));
+
+    return (
         <body className="App-body">
         <div className="container">
             <table className="table">
@@ -23,7 +30,7 @@ function DiscountPage() {
                 </tr>
                 </thead>
                 <tbody id="data">
-                {items.map(itemData => (<tr><td>{itemData.id}</td><td>{itemData.discountPercentage}</td><td>{new Date(itemData.discountDate).getHours()}</td><td>{itemData.productId}</td></tr>))}
+                {map}
                 </tbody>
             </table>
         </div>
@@ -31,7 +38,7 @@ function DiscountPage() {
     )
 
     function getData() {
-        return fetch("http://localhost:8080//getDiscount").then((res) => {
+        return fetch("http://localhost:8080/getDiscount").then((res) => {
             return res.json();
         });
     }

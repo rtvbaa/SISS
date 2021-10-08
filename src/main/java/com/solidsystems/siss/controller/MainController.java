@@ -3,12 +3,12 @@ package com.solidsystems.siss.controller;
 import com.solidsystems.siss.controller.model.Product;
 import com.solidsystems.siss.controller.model.Sale;
 import com.solidsystems.siss.dao.model.DiscountEntity;
-import com.solidsystems.siss.dao.model.ProductEntity;
 import com.solidsystems.siss.dao.model.SaleEntity;
 import com.solidsystems.siss.service.DiscountService;
 import com.solidsystems.siss.service.ProductService;
 import com.solidsystems.siss.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,16 +28,17 @@ public class MainController {
         this.saleService = saleService;
     }
 
-    @GetMapping("/getProduct")
-    public List<ProductEntity> getProduct() {
+    @GetMapping("/getProducts")
+    public List<Product> getProducts() {
         return productService.getAll();
     }
 
     @PostMapping(value = "/postProduct",
             produces = {"application/json;charset=UTF-8"},
             consumes = {"application/json"})
-    public ProductEntity postProduct(@RequestBody Product product) {
-        return productService.add(product);
+    public HttpStatus postProduct(@RequestBody Product product) {
+        productService.add(product);
+        return HttpStatus.OK;
     }
 
     @GetMapping("/getDiscount")
