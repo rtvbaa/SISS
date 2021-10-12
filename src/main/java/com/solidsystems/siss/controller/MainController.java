@@ -3,7 +3,6 @@ package com.solidsystems.siss.controller;
 import com.solidsystems.siss.controller.model.Product;
 import com.solidsystems.siss.controller.model.Sale;
 import com.solidsystems.siss.dao.model.DiscountEntity;
-import com.solidsystems.siss.dao.model.SaleEntity;
 import com.solidsystems.siss.service.DiscountService;
 import com.solidsystems.siss.service.ProductService;
 import com.solidsystems.siss.service.SaleService;
@@ -12,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
@@ -54,7 +54,8 @@ public class MainController {
     @PostMapping(value = "/postSales",
             produces = {"application/json;charset=UTF-8"},
             consumes = {"application/json"})
-    public SaleEntity postSales(@RequestBody Sale sale) {
-        return saleService.add(sale);
+    public HttpStatus postSales(@RequestBody Map<String, String> json) {
+        saleService.add(json.get("products"), json.get("discountId"));
+        return HttpStatus.OK;
     }
 }

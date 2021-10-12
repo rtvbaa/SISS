@@ -22,7 +22,7 @@ function SalePage() {
             <td>{itemData.id}</td>
             <td>{itemData.products.map(current => (<tr>{current.id} {current.productName}</tr>))}</td>
             <td>{itemData.discountId}</td>
-            <td>{date.getDay() + '.' + date.getMonth() + '.' + date.getFullYear()}</td>
+            <td>{`${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`}</td>
         </tr>);
     })}</>;
 
@@ -44,11 +44,11 @@ function SalePage() {
                 <tr>
                     <td>
                         <label htmlFor="NewIDSale"/>
-                        <input id="NewIDSale" type="text" size="1" placeholder="id"/>
+                        <input id="NewIDSale" type="hidden" size="1" placeholder="id"/>
                     </td>
                     <td>
                         <label htmlFor="NewSaleProducts"/>
-                        <input id="NewSaleProducts" type="text" size="100" placeholder="products id"/>
+                        <input id="NewSaleProducts" type="text" size="100" placeholder="products"/>
                     </td>
                     <td>
                         <label htmlFor="NewSaleDiscountId"/>
@@ -56,7 +56,7 @@ function SalePage() {
                     </td>
                     <td>
                         <label htmlFor="NewSaleDate"/>
-                        <input id="NewSaleDate" type="date" size="25"/>
+                        <input id="NewSaleDate" type="hidden" size="25"/>
                     </td>
                 </tr>
             </table>
@@ -78,9 +78,8 @@ function SalePage() {
 
     function sendPost() {
         let payload = {
-            id: document.getElementById('NewIDProduct').value,
-            productName: document.getElementById('NewProductName').value,
-            productPrice: document.getElementById('NewProductPrice').value
+            products: document.getElementById('NewSaleProducts').value,
+            discountId: document.getElementById('NewSaleDiscountId').value,
         };
 
         fetch("http://localhost:8080/postSales",
