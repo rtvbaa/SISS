@@ -48,7 +48,7 @@ function SalePage() {
                     </td>
                     <td>
                         <label htmlFor="NewSaleProducts"/>
-                        <input id="NewSaleProducts" type="text" size="100" placeholder="products"/>
+                        <input id="NewSaleProducts" type="text" size="100" placeholder="ID продуктов через пробел"/>
                     </td>
                     <td>
                         <label htmlFor="NewSaleDiscountId"/>

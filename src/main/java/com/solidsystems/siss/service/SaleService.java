@@ -42,7 +42,9 @@ public class SaleService {
     public SaleEntity add(String products, String discountId) {
         SaleEntity saleEntity = new SaleEntity();
         List<ProductEntity> productEntityList = new ArrayList<>();
-        productEntityList.add(productRepository.getById(Long.parseLong(products)));
+        for (String product: products.split(" ")) {
+            productEntityList.add(productRepository.getById(Long.parseLong(product)));
+        }
         saleEntity.setProducts(productEntityList);
         saleEntity.setDiscountId(Long.parseLong(discountId));
         saleEntity.setSaleDate(new Date());
