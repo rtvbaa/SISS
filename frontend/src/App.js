@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ProductPage from "./ProductPage";
 import DiscountPage from "./DiscountPage"
 import SalePage from "./SalePage";
+import StatisticsPage from "./StatisticsPage";
 
 function App() {
     return (
@@ -19,6 +20,9 @@ function App() {
                     </Route>
                     <Route path="/Discount">
                         <DiscountPage/>
+                    </Route>
+                    <Route path="/Statistics">
+                        <StatisticsPage/>
                     </Route>
                 </Switch>
             </Router>

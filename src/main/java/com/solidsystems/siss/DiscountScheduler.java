@@ -33,7 +33,7 @@ public class DiscountScheduler {
     }
 
     private long getRandomProduct() {
-        return productRepository.count();
+        return (long) ((Math.random() * ((productRepository.count() - 1) + 1)) + 1);
     }
 }
 

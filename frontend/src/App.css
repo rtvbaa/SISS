@@ -20,3 +20,12 @@
   color: white;
 }
 
+table {
+  border: 3px solid grey;
+  background-color: #181821;
+}
+
+th, td {
+  border: 1px solid grey;
+}
+
