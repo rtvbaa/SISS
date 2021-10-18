@@ -2,10 +2,12 @@ package com.solidsystems.siss.controller;
 
 import com.solidsystems.siss.controller.model.Product;
 import com.solidsystems.siss.controller.model.Sale;
+import com.solidsystems.siss.controller.model.Statistics;
 import com.solidsystems.siss.dao.model.DiscountEntity;
 import com.solidsystems.siss.service.DiscountService;
 import com.solidsystems.siss.service.ProductService;
 import com.solidsystems.siss.service.SaleService;
+import com.solidsystems.siss.service.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +22,14 @@ public class MainController {
     private final ProductService productService;
     private final DiscountService discountService;
     private final SaleService saleService;
+    private final StatisticsService statisticsService;
 
     @Autowired
-    public MainController(ProductService productService, DiscountService discountService, SaleService saleService) {
+    public MainController(ProductService productService, DiscountService discountService, SaleService saleService, StatisticsService statisticsService) {
         this.productService = productService;
         this.discountService = discountService;
         this.saleService = saleService;
+        this.statisticsService = statisticsService;
     }
 
     @GetMapping("/getProducts")
@@ -57,5 +61,10 @@ public class MainController {
     public HttpStatus postSales(@RequestBody Map<String, String> json) {
         saleService.add(json.get("products"), json.get("discountId"));
         return HttpStatus.OK;
+    }
+
+    @GetMapping("/getHourlyStatistics")
+    public List<Statistics> getHourlyStatistics() {
+        return statisticsService.getHourlyStatistics();
     }
 }
