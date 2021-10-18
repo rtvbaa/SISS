@@ -17,10 +17,14 @@ function StatisticsPage() {
     }, [setItems]);
 
     let map = items.map(itemData => (<tr>
-        <td>{new Date(itemData.discountDate).getHours()}</td>
-        <td>{itemData.id}</td>
-        <td>{itemData.discountPercentage}</td>
-        <td>{itemData.productId}</td>
+        <td>{new Date(itemData.statisticsDate).getHours()}</td>
+        <td>{itemData.numberOfReceipts}</td>
+        <td>{itemData.totalCostOfReceipts}</td>
+        <td>{itemData.theCostOfAnAverageCheck}</td>
+        <td>{itemData.theAmountOfDiscounts}</td>
+        <td>{itemData.theTotalCostOfReceiptsIncludingDiscounts}</td>
+        <td>{itemData.theCostOfAnAverageReceiptIncludingDiscounts}</td>
+        <td>{itemData.theIncreaseInTheAverageCheckToThePreviousHour}</td>
     </tr>));
 
     return (
