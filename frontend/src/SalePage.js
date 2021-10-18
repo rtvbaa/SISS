@@ -22,7 +22,7 @@ function SalePage() {
             <td>{itemData.id}</td>
             <td>{itemData.products.map(current => (<tr>{current.id} {current.productName}</tr>))}</td>
             <td>{itemData.discountId}</td>
-            <td>{`${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`}</td>
+            <td>{`${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`}</td>
         </tr>);
     })}</>;
 
