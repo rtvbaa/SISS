@@ -40,11 +40,12 @@ public class Statistics {
     @Getter
     Integer theCostOfAnAverageReceiptIncludingDiscounts;
 
-    public Statistics(Date statisticsDate, Long numberOfReceipts, Integer totalCostOfReceipts,
+    public Statistics(Long id, Date statisticsDate, Long numberOfReceipts, Integer totalCostOfReceipts,
                       Integer theCostOfAnAverageCheck, Integer theAmountOfDiscounts,
                       Integer theTotalCostOfReceiptsIncludingDiscounts,
                       Integer theCostOfAnAverageReceiptIncludingDiscounts,
                       Integer theIncreaseInTheAverageCheckToThePreviousHour) {
+        this.id = id;
         this.statisticsDate = statisticsDate;
         this.numberOfReceipts = numberOfReceipts;
         this.totalCostOfReceipts = totalCostOfReceipts;

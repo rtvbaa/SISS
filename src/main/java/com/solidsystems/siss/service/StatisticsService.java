@@ -20,7 +20,7 @@ public class StatisticsService {
     public List<Statistics> getHourlyStatistics(){
         List<Statistics> statisticsList = new ArrayList<>();
         for (StatisticsEntity statisticsEntity: statisticsRepository.findAll()) {
-            statisticsList.add(new Statistics(statisticsEntity.getStatisticsDate(),
+            statisticsList.add(new Statistics(statisticsEntity.getId(), statisticsEntity.getStatisticsDate(),
                     statisticsEntity.getNumberOfReceipts(), statisticsEntity.getTotalCostOfReceipts(),
                     statisticsEntity.getTheCostOfAnAverageCheck(), statisticsEntity.getTheAmountOfDiscounts(),
                     statisticsEntity.getTheTotalCostOfReceiptsIncludingDiscounts(),
