@@ -5,12 +5,16 @@ import com.solidsystems.siss.dao.ProductRepository;
 import com.solidsystems.siss.dao.SaleRepository;
 import com.solidsystems.siss.dao.StatisticsRepository;
 import com.solidsystems.siss.dao.model.DiscountEntity;
+import com.solidsystems.siss.dao.model.ProductEntity;
+import com.solidsystems.siss.dao.model.SaleEntity;
 import com.solidsystems.siss.dao.model.StatisticsEntity;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Configuration
 @EnableScheduling
@@ -53,7 +57,22 @@ public class DiscountScheduler {
         StatisticsEntity statisticsEntity = new StatisticsEntity();
         statisticsEntity.setStatisticsDate(date);
         statisticsEntity.setNumberOfReceipts(saleRepository.count());
+        statisticsEntity.setTotalCostOfReceipts(totalCostOfReceipts());
         statisticsRepository.saveAndFlush(statisticsEntity);
+    }
+
+    private Integer totalCostOfReceipts() {
+        List<Integer> saleProductsPrice = new ArrayList<>();
+        for (SaleEntity saleEntity : saleRepository.findAll()) {
+            for (ProductEntity product : saleEntity.getProducts()) {
+                saleProductsPrice.add(product.getProductPrice());
+            }
+        }
+        int totalCost = 0;
+        for (Integer saleProduct : saleProductsPrice) {
+            totalCost = totalCost + saleProduct;
+        }
+        return totalCost;
     }
 }
 

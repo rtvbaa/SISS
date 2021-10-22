@@ -18,7 +18,7 @@ public class SaleEntity extends BaseEntity {
 
     @Getter
     @Setter
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "SALE_PRODUCTS",
             joinColumns = @JoinColumn(name = "SALE_ID"),
             inverseJoinColumns = @JoinColumn(name = "Product_ID")
