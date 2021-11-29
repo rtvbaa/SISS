@@ -6,6 +6,7 @@ import com.solidsystems.siss.dao.ProductRepository;
 import com.solidsystems.siss.dao.SaleRepository;
 import com.solidsystems.siss.dao.model.ProductEntity;
 import com.solidsystems.siss.dao.model.SaleEntity;
+import com.solidsystems.siss.exception.ApiRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,12 @@ public class SaleService {
     }
 
     public SaleEntity add(String products, String discountId) {
+        if (products.equals("")) {
+            throw new ApiRequestException("products cannot be empty.");
+        }
+        if (discountId.equals("")) {
+            throw new ApiRequestException("discountId cannot be empty.");
+        }
         SaleEntity saleEntity = new SaleEntity();
         List<ProductEntity> productEntityList = new ArrayList<>();
         for (String product: products.split(" ")) {
