@@ -30,7 +30,7 @@ services:
       - pg_db
 
   node_js:
-    image: node
+    image: node:16.13.0
     working_dir: "/home/app/"
     volumes:
       - ./frontend:/home/app/
