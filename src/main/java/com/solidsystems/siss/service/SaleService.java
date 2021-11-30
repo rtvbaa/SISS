@@ -32,8 +32,8 @@ public class SaleService {
             List<Product> products = new ArrayList<>();
             for (ProductEntity productEntity : saleEntity.getProducts()) {
                 products.add(new Product(productEntity.getId(),
-                                productEntity.getProductName(),
-                                productEntity.getProductPrice()));
+                        productEntity.getProductName(),
+                        productEntity.getProductPrice()));
             }
             saleList.add(new Sale(saleEntity.getId(), saleEntity.getSaleDate(), saleEntity.getDiscountId(), products));
         }
@@ -41,20 +41,28 @@ public class SaleService {
     }
 
     public SaleEntity add(String products, String discountId) {
-        if (products.equals("")) {
-            throw new ApiRequestException("products cannot be empty.");
-        }
-        if (discountId.equals("")) {
-            throw new ApiRequestException("discountId cannot be empty.");
-        }
+
         SaleEntity saleEntity = new SaleEntity();
         List<ProductEntity> productEntityList = new ArrayList<>();
-        for (String product: products.split(" ")) {
-            productEntityList.add(productRepository.getById(Long.parseLong(product)));
+        try {
+            for (String product : products.split(" ")) {
+                productEntityList.add(productRepository.getById(Long.parseLong(product)));
+            }
+            saleEntity.setProducts(productEntityList);
+            saleEntity.setDiscountId(Long.parseLong(discountId));
+            saleEntity.setSaleDate(new Date());
+            return saleRepository.save(saleEntity);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            if (products.equals("")) {
+                throw new ApiRequestException("products cannot be empty.");
+            } else if (discountId.equals("")) {
+                throw new ApiRequestException("discountId cannot be empty.");
+            } else throw new ApiRequestException("Invalid request format");
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new ApiRequestException("Invalid request format");
         }
-        saleEntity.setProducts(productEntityList);
-        saleEntity.setDiscountId(Long.parseLong(discountId));
-        saleEntity.setSaleDate(new Date());
-        return saleRepository.save(saleEntity);
+
     }
 }

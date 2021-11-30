@@ -8,6 +8,7 @@ import com.solidsystems.siss.dao.model.DiscountEntity;
 import com.solidsystems.siss.dao.model.ProductEntity;
 import com.solidsystems.siss.dao.model.SaleEntity;
 import com.solidsystems.siss.dao.model.StatisticsEntity;
+import com.solidsystems.siss.exception.ApiRequestException;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -58,6 +59,7 @@ public class DiscountScheduler {
         statisticsEntity.setStatisticsDate(date);
         statisticsEntity.setNumberOfReceipts(saleRepository.count());
         statisticsEntity.setTotalCostOfReceipts(totalCostOfReceipts());
+        statisticsEntity.setTheCostOfAnAverageCheck(theCostOfAnAverageCheck());
         statisticsRepository.saveAndFlush(statisticsEntity);
     }
 
@@ -73,6 +75,25 @@ public class DiscountScheduler {
             totalCost = totalCost + saleProduct;
         }
         return totalCost;
+    }
+
+    private Integer theCostOfAnAverageCheck() {
+        List<Integer> saleProductsPrice = new ArrayList<>();
+        for (SaleEntity saleEntity : saleRepository.findAll()) {
+            for (ProductEntity product : saleEntity.getProducts()) {
+                saleProductsPrice.add(product.getProductPrice());
+            }
+        }
+        int totalCost = 0;
+        for (Integer saleProduct : saleProductsPrice) {
+            totalCost = totalCost + saleProduct;
+        }
+        try {
+            return totalCost/(int)saleRepository.count();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ApiRequestException("There are no sales");
+        }
     }
 }
 
