@@ -19,7 +19,7 @@ public class ProductConfiguration {
             productRepository.saveAll(List.of(new ProductEntity("Tea", 200)));
             productRepository.saveAll(List.of(new ProductEntity("Milk", 250)));
 
-            saleRepository.saveAll(List.of(new SaleEntity(new Date(), 1)));
+            saleRepository.saveAll(List.of(new SaleEntity(new Date(), List.of(new ProductEntity("Cookies", 100)), 1)));
         };
     }
 }
