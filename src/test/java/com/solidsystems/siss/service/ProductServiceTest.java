@@ -3,34 +3,25 @@ package com.solidsystems.siss.service;
 import com.solidsystems.siss.dao.ProductRepository;
 import com.solidsystems.siss.dao.model.ProductEntity;
 import com.solidsystems.siss.dao.model.SaleEntity;
-import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-@AutoConfigureMockMvc
 class ProductServiceTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    private ProductService productService;
 
 
     @MockBean
@@ -44,16 +35,12 @@ class ProductServiceTest {
     }
 
     @Test
-    void getAll() throws Exception {
+    void getAll() {
         List<ProductEntity> records = new ArrayList<>(Arrays.asList(productEntity1, productEntity2));
         Mockito.when(productRepository.findAll()).thenReturn(records);
-        this.mockMvc.perform(MockMvcRequestBuilders
-                        .get("/getProducts")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(jsonPath("$", Matchers.hasSize(2)))
-                .andExpect(jsonPath("$[0].productName", Matchers.is("Meat")))
-                .andExpect(jsonPath("$[1].productName", Matchers.is("Fish")));
+
+        Assertions.assertEquals(productService.getAll().size(), 2);
+        Assertions.assertEquals(productService.getAll().get(0).getProductName(),"Meat");
+        Assertions.assertEquals(productService.getAll().get(1).getProductName(),"Fish");
     }
 }
