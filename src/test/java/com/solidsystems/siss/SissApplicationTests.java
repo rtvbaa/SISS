@@ -22,7 +22,7 @@ class SissApplicationTests {
 
     @Test
     void contextLoads() throws Exception {
-        this.mockMvc.perform(get("/"))
+        this.mockMvc.perform(get("/getProducts"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().is(200));
     }
