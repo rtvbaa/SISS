@@ -1,8 +1,6 @@
 package com.solidsystems.siss.controller;
 
-import com.solidsystems.siss.dao.ProductRepository;
-import com.solidsystems.siss.dao.model.ProductEntity;
-import com.solidsystems.siss.dao.model.SaleEntity;
+import com.solidsystems.siss.controller.model.Product;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,15 +31,15 @@ class MainControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    ProductRepository productRepository;
+    MainController mainController;
 
-    ProductEntity productEntity1 = new ProductEntity("Meat", 1000, Arrays.asList(new SaleEntity(), new SaleEntity()));
-    ProductEntity productEntity2 = new ProductEntity("Fish", 900, Arrays.asList(new SaleEntity(), new SaleEntity()));
+    Product product1 = new Product(1L, "Meat", 1000);
+    Product product2 = new Product(2L, "Fish", 900);
 
     @Test
     void getProducts() throws Exception {
-        List<ProductEntity> records = new ArrayList<>(Arrays.asList(productEntity1, productEntity2));
-        Mockito.when(productRepository.findAll()).thenReturn(records);
+        List<Product> records = new ArrayList<>(Arrays.asList(product1, product2));
+        Mockito.when(mainController.getProducts()).thenReturn(records);
         this.mockMvc.perform(MockMvcRequestBuilders
                         .get("/getProducts")
                         .contentType(MediaType.APPLICATION_JSON))
