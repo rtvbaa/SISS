@@ -60,7 +60,18 @@ public class DiscountScheduler {
         statisticsEntity.setNumberOfReceipts(saleRepository.count());
         statisticsEntity.setTotalCostOfReceipts(totalCostOfReceipts());
         statisticsEntity.setTheCostOfAnAverageCheck(theCostOfAnAverageCheck());
+        statisticsEntity.setTheAmountOfDiscounts(theAmountOfDiscounts());
         statisticsRepository.saveAndFlush(statisticsEntity);
+    }
+
+    private Integer theAmountOfDiscounts() {
+        List<Integer> saleProductsPrice = new ArrayList<>();
+        for (SaleEntity saleEntity : saleRepository.findAll()) {
+            for (ProductEntity product : saleEntity.getProducts()) {
+                saleProductsPrice.add(product.getProductPrice());
+            }
+        }
+        return -1;
     }
 
     private Integer totalCostOfReceipts() {
