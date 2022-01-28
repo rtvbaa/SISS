@@ -13,9 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Configuration
 @EnableScheduling
@@ -65,16 +63,34 @@ public class DiscountScheduler {
     }
 
     private Integer theAmountOfDiscounts() {
-        List<Integer> saleProductsPrice = new ArrayList<>();
+        Map<Long, Integer> saleProductsPrice = new HashMap<>();
         for (SaleEntity saleEntity : saleRepository.findAll()) {
             for (ProductEntity product : saleEntity.getProducts()) {
-                saleProductsPrice.add(product.getProductPrice());
+                saleProductsPrice.put(product.getId(), product.getProductPrice());
             }
         }
-        return -1;
+        try {
+            return saleProductsPrice.get(4L);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ApiRequestException("There are no saleProductsPrice");
+        }
     }
 
     private Integer totalCostOfReceipts() {
+        return getTotalCost();
+    }
+
+    private Integer theCostOfAnAverageCheck() {
+        try {
+            return getTotalCost() / (int) saleRepository.count();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ApiRequestException("There are no sales");
+        }
+    }
+
+    private Integer getTotalCost() {
         List<Integer> saleProductsPrice = new ArrayList<>();
         for (SaleEntity saleEntity : saleRepository.findAll()) {
             for (ProductEntity product : saleEntity.getProducts()) {
@@ -86,25 +102,6 @@ public class DiscountScheduler {
             totalCost = totalCost + saleProduct;
         }
         return totalCost;
-    }
-
-    private Integer theCostOfAnAverageCheck() {
-        List<Integer> saleProductsPrice = new ArrayList<>();
-        for (SaleEntity saleEntity : saleRepository.findAll()) {
-            for (ProductEntity product : saleEntity.getProducts()) {
-                saleProductsPrice.add(product.getProductPrice());
-            }
-        }
-        int totalCost = 0;
-        for (Integer saleProduct : saleProductsPrice) {
-            totalCost = totalCost + saleProduct;
-        }
-        try {
-            return totalCost/(int)saleRepository.count();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new ApiRequestException("There are no sales");
-        }
     }
 }
 
